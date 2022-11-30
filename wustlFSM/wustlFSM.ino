@@ -9,6 +9,10 @@ enum State {
   up7
 };
 
+char bit1;
+char bit2;
+char bit3;
+
 void setup() {
   Serial.begin(9600);
   Serial.println("Initialized!");
@@ -23,7 +27,7 @@ nextState(s);
 
 }
 
-nextState(State) {
+void nextState(State state) {
 
   switch(state){
     case up0:
