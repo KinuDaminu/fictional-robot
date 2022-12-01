@@ -1,3 +1,12 @@
+/* wustl - Washington University of St.Louise
+ * 
+ * Finite State Machine (FSM) is an abstract model of a machine
+ * FSMs can be in exactly one of the finite states
+ * They can transition from one state to another as per condition.
+ * 
+ * This machine has 8 states, conditioned to cycle through each other.
+ */
+
 enum State {
   up0, 
   up1, 
@@ -9,21 +18,24 @@ enum State {
   up7
 };
 
-char bit1;
-char bit2;
-char bit3;
+byte bit1 = 0;
+byte bit2 = 0;
+byte bit3 = 0;
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Initialized!");
 }
 
-State s = up0;
+State s = up2;
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  
 nextState(s);
+delay(200);
+
+Serial.print(s);
+Serial.print(" - ");
 
 }
 
@@ -36,11 +48,11 @@ void nextState(State state) {
       bit2 = 0;
       bit3 = 0;
 
-      Serial.print(bit3);
+      Serial.print(bit1);
       Serial.print(bit2);
-      Serial.println(bit1);
+      Serial.println(bit3);
 
-      state = up1;
+      s = up1;
 
       break;
 
@@ -50,11 +62,11 @@ void nextState(State state) {
       bit2 = 0;
       bit3 = 1;
 
-      Serial.print(bit3);
+      Serial.print(bit1);
       Serial.print(bit2);
-      Serial.println(bit1);
+      Serial.println(bit3);
 
-      state = up2;
+      s = up2;
 
       break;
 
@@ -64,11 +76,11 @@ void nextState(State state) {
       bit2 = 1;
       bit3 = 0;
 
-      Serial.print(bit3);
+      Serial.print(bit1);
       Serial.print(bit2);
-      Serial.println(bit1);
+      Serial.println(bit3);
 
-      state = up3;
+      s = up3;
 
       break;
 
@@ -78,11 +90,11 @@ void nextState(State state) {
       bit2 = 1;
       bit3 = 1;
 
-      Serial.print(bit3);
+      Serial.print(bit1);
       Serial.print(bit2);
-      Serial.println(bit1);
+      Serial.println(bit3);
 
-      state = up4;
+      s = up4;
 
       break;
 
@@ -92,11 +104,11 @@ void nextState(State state) {
       bit2 = 0;
       bit3 = 0;
 
-      Serial.print(bit3);
+      Serial.print(bit1);
       Serial.print(bit2);
-      Serial.println(bit1);
+      Serial.println(bit3);
 
-      state = up5;
+      s = up5;
 
       break;
 
@@ -106,11 +118,11 @@ void nextState(State state) {
       bit2 = 0;
       bit3 = 1;
 
-      Serial.print(bit3);
+      Serial.print(bit1);
       Serial.print(bit2);
-      Serial.println(bit1);
+      Serial.println(bit3);
 
-      state = up6;
+      s = up6;
 
       break;
 
@@ -120,11 +132,11 @@ void nextState(State state) {
       bit2 = 1;
       bit3 = 0;
 
-      Serial.print(bit3);
+      Serial.print(bit1);
       Serial.print(bit2);
-      Serial.println(bit1);
+      Serial.println(bit3);
 
-      state = up7;
+      s = up7;
 
       break;
 
@@ -134,12 +146,16 @@ void nextState(State state) {
       bit2 = 1;
       bit3 = 1;
 
-      Serial.print(bit3);
+      Serial.print(bit1);
       Serial.print(bit2);
-      Serial.println(bit1);
+      Serial.println(bit3);
 
-      state = up0;
+      s = up0;
 
       break;
+
+    default:
+
+      Serial.println("No State");
   }
 }
